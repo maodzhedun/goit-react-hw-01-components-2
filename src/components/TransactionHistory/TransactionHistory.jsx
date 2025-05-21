@@ -1,4 +1,4 @@
-import PropType from "prop-types";
+// import PropType from "prop-types";
 
 export const TransactionHistory = ({items}) => {
 console.log("InTrans", items)
