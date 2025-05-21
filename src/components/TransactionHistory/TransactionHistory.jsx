@@ -1,28 +1,40 @@
-// import PropType from "prop-types";
+import PropTypes from 'prop-types';
+import { TransactionTable } from "./TransactionHistory.styled";
 
-export const TransactionHistory = ({items}) => {
-console.log("InTrans", items)
-}
+export const TransactionHistory = ({ items }) => {
+  console.log('InTrans:', items);
+  return (
+    <>
+      <TransactionTable>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Currency</th>
+          </tr>
+        </thead>
 
-<table class="transaction-history">
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Amount</th>
-      <th>Currency</th>
-    </tr>
-  </thead>
+        <tbody>
+          {items.map(({ id, type, amount, currency }) => (
+            <tr key={id}>
+              <td>{type}</td>
+              <td>{amount}</td>
+              <td>{currency}</td>
+            </tr>
+          ))}
+        </tbody>
+      </TransactionTable>
+    </>
+  );
+};
 
-  <tbody>
-    <tr>
-      <td>Invoice</td>
-      <td>125</td>
-      <td>USD</td>
-    </tr>
-    <tr>
-      <td>Withdrawal</td>
-      <td>85</td>
-      <td>USD</td>
-    </tr>
-  </tbody>
-</table>
+TransactionHistory.protoType = {
+  items: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+      currency: PropTypes.string.isRequired,
+    })
+  ),
+};
